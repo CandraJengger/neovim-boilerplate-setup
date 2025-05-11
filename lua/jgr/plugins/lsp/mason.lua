@@ -40,6 +40,8 @@ return {
 				"lua_ls",
 				"gopls",
 				"dockerls",
+				"tailwindcss",
+				"volar",
 				-- "intelephense"
 			},
 		})
