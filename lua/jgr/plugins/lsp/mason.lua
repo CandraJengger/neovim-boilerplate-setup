@@ -28,7 +28,6 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"bashls",
-				"vuels",
 				"ts_ls",
 				"eslint",
 				"sqlls",
