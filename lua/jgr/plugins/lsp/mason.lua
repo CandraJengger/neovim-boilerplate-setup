@@ -41,8 +41,11 @@ return {
 				"dockerls",
 				"tailwindcss",
 				"volar",
+				"tsserver",
+				"html",
 				-- "intelephense"
 			},
+			automatic_installation = true,
 		})
 
 		mason_tool_installer.setup({
@@ -50,6 +53,7 @@ return {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"eslint_d",
+				"biome",
 			},
 		})
 	end,

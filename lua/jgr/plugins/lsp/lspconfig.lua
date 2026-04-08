@@ -8,7 +8,7 @@ return {
 	},
 	config = function()
 		-- import lspconfig plugin
-		local lspconfig = require("lspconfig")
+		local lspconfig = vim.lsp.config
 
 		-- import mason_lspconfig plugin
 		local mason_lspconfig = require("mason-lspconfig")
@@ -78,20 +78,20 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		lspconfig.dartls.setup({
+		lspconfig("dartls", {
 			cmd = { "dart", "language-server", "--protocol=lsp" },
 		})
 
-		mason_lspconfig.setup_handlers({
+		mason_lspconfig.setup({
 			-- default handler for installed servers
 			function(server_name)
-				lspconfig[server_name].setup({
+				lspconfig(server_name, {
 					capabilities = capabilities,
 				})
 			end,
 			["svelte"] = function()
 				-- configure svelte server
-				lspconfig["svelte"].setup({
+				lspconfig("svelte", {
 					capabilities = capabilities,
 					on_attach = function(client, bufnr)
 						vim.api.nvim_create_autocmd("BufWritePost", {
@@ -106,14 +106,14 @@ return {
 			end,
 			["graphql"] = function()
 				-- configure graphql language server
-				lspconfig["graphql"].setup({
+				lspconfig("graphql", {
 					capabilities = capabilities,
 					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
 				})
 			end,
 			["emmet_ls"] = function()
 				-- configure emmet language server
-				lspconfig["emmet_ls"].setup({
+				lspconfig("emmet_ls", {
 					capabilities = capabilities,
 					filetypes = {
 						"html",
@@ -130,7 +130,7 @@ return {
 			end,
 			["lua_ls"] = function()
 				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
+				lspconfig("lua_ls", {
 					capabilities = capabilities,
 					settings = {
 						Lua = {
@@ -154,7 +154,7 @@ return {
 				-- 2. Import lspconfig
 
 				-- 3. Configure ts_ls for TypeScript and Vue
-				lspconfig.ts_ls.setup({
+				lspconfig("ts_ls", {
 					init_options = {
 						plugins = {
 							{
@@ -165,6 +165,14 @@ return {
 						},
 					},
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+				})
+			end,
+			["astro"] = function()
+				-- configure astro language server
+				lspconfig("astro", {
+					capabilities = capabilities,
+					on_attach = on_attach,
+					filetypes = { "astro" },
 				})
 			end,
 		})
