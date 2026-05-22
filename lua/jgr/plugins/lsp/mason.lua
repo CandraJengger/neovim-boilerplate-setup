@@ -43,6 +43,7 @@ return {
 				"volar",
 				"tsserver",
 				"html",
+				"rust_analyzer",
 				-- "intelephense"
 			},
 			automatic_installation = true,

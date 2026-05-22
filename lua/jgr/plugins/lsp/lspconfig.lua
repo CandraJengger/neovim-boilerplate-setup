@@ -175,6 +175,14 @@ return {
 					filetypes = { "astro" },
 				})
 			end,
+			["rust_analyzer"] = function()
+				-- configure rust_analyzer language server
+				lspconfig("rust_analyzer", {
+					cargo = {
+						allFeatures = true,
+					},
+				})
+			end,
 		})
 	end,
 }
